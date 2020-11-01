@@ -1,20 +1,13 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = () => (
-  <Layout>
+  <Layout canShowCallingCard={true}>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
+    <h1>Заголовок интересный</h1>
+    <p>Задача организации, в особенности же управление и развитие структуры напрямую зависит от дальнейших направлений развития. Значимость этих проблем настолько очевидна, что новая модель организационной деятельности играет важную роль в формировании новых предложений. Идейные соображения высшего порядка, а также повышение уровня гражданского сознания играет важную роль в формировании форм воздействия.</p>
   </Layout>
 )
 

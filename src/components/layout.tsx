@@ -1,52 +1,91 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
 import React, { ReactNode } from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import styled from 'styled-components'
 
-import Header from "./header"
 import "./layout.css"
+import CallingCard from "./calling-card/calling-card"
+import Sidebar from "./sidebar/sidebar";
 
 interface Props {
   children: ReactNode
+  canShowCallingCard?: boolean
 }
 
-const Layout = ({ children }: Props) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
+const CallingCardScreen = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 15px;
+`
+
+const Content = styled.main`
+  min-height: calc(100vh - 68px);
+  padding: 120px 84px 40px;
+`
+
+const Footer = styled.footer`
+  text-align: center;
+  padding-bottom: 50px;
+  color: #AAAAAA;
+  font-size: 18px;
+  line-height: 1;
+`
+
+const Container = styled.div`
+  max-width: 1060px;
+  margin: auto;
+`
+
+export default class Layout extends React.Component<Props> {
+  private _canShowSidebar = !this.props.canShowCallingCard;
+  private _callingCardRef = React.createRef<HTMLDivElement>();
+
+  componentDidMount() {
+    if (this.props.canShowCallingCard) {
+      window.addEventListener('scroll', this.scrollEvent)
     }
-  `)
+  }
 
-  return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer style={{
-          marginTop: `2rem`
-        }}>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </>
-  )
+  componentWillUnmount() {
+    if (this.props.canShowCallingCard) {
+      window.removeEventListener('scroll', this.scrollEvent)
+    }
+  }
+
+  /**
+   * Toggles sidebar visibility depending on the visibility of callingCard
+   */
+  scrollEvent = () => {
+    const currentScrollTop = document.documentElement.scrollTop
+    const callingCard = this._callingCardRef.current    
+    if (!callingCard) return
+    const callingCardBottom = callingCard?.offsetTop + callingCard?.clientHeight
+    const isAbleToHideSidebar = currentScrollTop < callingCardBottom + 30;
+    if (isAbleToHideSidebar && this._canShowSidebar) {
+      this._canShowSidebar = false;
+      this.forceUpdate()
+    } else if (!isAbleToHideSidebar && !this._canShowSidebar) {
+      this._canShowSidebar = true;
+      this.forceUpdate()
+    }
+  }
+
+  render() {
+    return (
+      <>
+        {this.props.canShowCallingCard && <CallingCardScreen>
+          <div ref={this._callingCardRef}>
+            <CallingCard />
+          </div>
+        </CallingCardScreen>}
+        {this._canShowSidebar && <Sidebar />}
+        <Content>
+          <Container>
+            {this.props.children}
+          </Container>
+        </Content>
+        <Footer>&copy; {new Date().getFullYear()}</Footer>
+      </>
+    ) 
+  }
 }
-
-export default Layout
