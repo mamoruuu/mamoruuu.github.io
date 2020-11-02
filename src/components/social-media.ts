@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const SocialMedia = styled.div`
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: flex-start;
   width: 100%;
