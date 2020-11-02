@@ -4,6 +4,7 @@ import Avatar from "../avatar/avatar";
 import { twitter, github } from '../../data/author.json'
 import { SocialMedia, SocialMediaIcon, SocialMediaLink } from "../social-media";
 import styled from "styled-components";
+import { Link } from "gatsby";
 
 const Wrap = styled.aside`
   width: 84px;
@@ -26,17 +27,21 @@ export default class Sidebar extends React.Component {
     })
   }
 
+  private _isAtMainPage = window.location.pathname === '/'
+
   render() {
     const twitterUrl = `https://twitter.com/${twitter.replace('@','')}`
     const githubUrl = `https://github.com/${github.replace('@','')}`
 
     return <Wrap>
-      <span tabIndex={0} onClick={() => this.scrollUp()} style={{ cursor: 'pointer' }}>
-        <Avatar style={{
-          width: '54px',
-          height: '54px',
-        }} />
-      </span>
+      {this._isAtMainPage
+        ? <span tabIndex={0} onClick={() => this.scrollUp()} style={{ cursor: 'pointer' }}>
+            <Avatar style={{ width: '54px', height: '54px' }} />
+          </span>
+        : <Link to="/">
+            <Avatar style={{ width: '54px', height: '54px' }} />
+          </Link>
+      }
 
       <SocialMedia style={{ flexDirection: 'column' }}>
         <SocialMediaLink href={twitterUrl}>

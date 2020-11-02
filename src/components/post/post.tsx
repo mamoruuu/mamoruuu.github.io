@@ -15,7 +15,7 @@ const Article = styled.article`
   }
 `
 
-const Post: React.FC<Props> = ({ key, post }) => {
+const Post: React.FC<Props> = ({ post }) => {
   const data = post.frontmatter
   return (
     <Article>
