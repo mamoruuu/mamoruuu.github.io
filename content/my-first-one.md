@@ -1,7 +1,7 @@
 ---
 title: Hello World
 date: 2019-04-15
-path: /my-first-post
+path: /my-first-one
 ---
 
 Hello, world! This is a demo post for `gatsby-theme-blog`.
