@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import "./layout.css"
 import CallingCard from "./calling-card/calling-card"
 import Sidebar from "./sidebar/sidebar";
-import { LocalStorageKey } from "../models/local-storage";
 
 interface Props {
   children: ReactNode
@@ -38,51 +37,13 @@ const Container = styled.div`
 `
 
 export default class Layout extends React.Component<Props> {
-  private _canShowSidebar = !this.props.canShowCallingCard;
-  private _callingCardRef = React.createRef<HTMLDivElement>();
-  private _callingCardScreenRef = React.createRef<HTMLDivElement>();
-
-  componentDidMount() {
-    if (this.props.canShowCallingCard) {
-      window.addEventListener('scroll', this.scrollEvent)
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.props.canShowCallingCard) {
-      window.removeEventListener('scroll', this.scrollEvent)
-    }
-  }
-
-  /**
-   * Toggles sidebar visibility depending on the visibility of callingCard
-   */
-  scrollEvent = () => {
-    const currentScrollTop = document.documentElement.scrollTop
-    const callingCard = this._callingCardRef.current    
-    if (!callingCard) return
-    const callingCardBottom = callingCard?.offsetTop + callingCard?.clientHeight
-    const isAbleToHideSidebar = currentScrollTop < callingCardBottom + 30;
-    if (isAbleToHideSidebar && this._canShowSidebar) {
-      this._canShowSidebar = false;
-      this.forceUpdate()
-      localStorage.removeItem(LocalStorageKey.ScrolledCard);
-    } else if (!isAbleToHideSidebar && !this._canShowSidebar) {
-      this._canShowSidebar = true;
-      this.forceUpdate()
-      localStorage.setItem(LocalStorageKey.ScrolledCard, '1');
-    }
-  }
-
   render() {
     return (
       <>
-        {this.props.canShowCallingCard && <CallingCardScreen ref={this._callingCardScreenRef}>
-          <div ref={this._callingCardRef}>
-            <CallingCard />
-          </div>
+        {this.props.canShowCallingCard && <CallingCardScreen>
+          <CallingCard />
         </CallingCardScreen>}
-        {this._canShowSidebar && <Sidebar />}
+        <Sidebar />
         <Content id="content">
           <Container>
             {this.props.children}

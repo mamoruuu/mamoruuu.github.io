@@ -6,13 +6,19 @@ import { SocialMedia, SocialMediaIcon, SocialMediaLink } from "../social-media";
 import styled from "styled-components";
 import { Link } from "gatsby";
 
+const StickyWrap = styled.div`
+  position: sticky;
+  top: 0;
+  height: 0;
+`
+
 const Wrap = styled.aside`
   width: 84px;
   padding: 15px 15px 35px;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
-  bottom: 0;
+  height: 100vh;
   z-index: 5;
   display: flex;
   flex-direction: column;
@@ -72,26 +78,28 @@ export default class Sidebar extends React.Component {
       </Name>
     ]
 
-    return <Wrap>
-      {this._isAtMainPage
-        ? <AvatarWrap tabIndex={0} onClick={() => this.scrollUp()}>
-            {avatarSet}
-          </AvatarWrap>
-        : <Link to="/">
-            {avatarSet}
-          </Link>
-      }
+    return <StickyWrap>
+      <Wrap>
+        {this._isAtMainPage
+          ? <AvatarWrap tabIndex={0} onClick={() => this.scrollUp()}>
+              {avatarSet}
+            </AvatarWrap>
+          : <Link to="/">
+              {avatarSet}
+            </Link>
+        }
 
-      <Line />
+        <Line />
 
-      <SocialMedia style={{ flexDirection: 'column' }}>
-        <SocialMediaLink href={twitterUrl}>
-          <SocialMediaIcon src={require('../../images/icons/twitter.svg')} alt="twitter" />
-        </SocialMediaLink>
-        <SocialMediaLink href={githubUrl} style={{ marginTop: '13px' }}>
-          <SocialMediaIcon src={require('../../images/icons/github.svg')} alt="github" />
-        </SocialMediaLink>
-      </SocialMedia>
-    </Wrap>
+        <SocialMedia style={{ flexDirection: 'column' }}>
+          <SocialMediaLink href={twitterUrl}>
+            <SocialMediaIcon src={require('../../images/icons/twitter.svg')} alt="twitter" />
+          </SocialMediaLink>
+          <SocialMediaLink href={githubUrl} style={{ marginTop: '13px' }}>
+            <SocialMediaIcon src={require('../../images/icons/github.svg')} alt="github" />
+          </SocialMediaLink>
+        </SocialMedia>
+      </Wrap>
+    </StickyWrap>
   }
 }
