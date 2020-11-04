@@ -11,7 +11,9 @@ interface Props {
 
 const Article = styled.article`
   & + & {
-    margin-top: 40px;
+    margin-top: 30px;
+    border-top: 2px solid var(--color-dark);
+    padding-top: 30px;
   }
 `
 
@@ -20,7 +22,9 @@ const Post: React.FC<Props> = ({ post }) => {
   return (
     <Article>
       <Header>
-        <Title2>{data.title}</Title2>
+        <Link to={data.path}>
+          <Title2>{data.title}</Title2>
+        </Link>
         <UnderTitle>Published at {data.date} | {post.timeToRead} min of reading</UnderTitle>
       </Header>
       <p dangerouslySetInnerHTML={{ __html: post.excerpt }}>{}</p>

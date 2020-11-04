@@ -17,7 +17,9 @@ const IndexPage = ({
   return (
     <Layout canShowCallingCard={true}>
       <SEO title="Home" />
-      <PostContainer>{PostList}</PostContainer>
+      <PostContainer>
+        {PostList}
+      </PostContainer>
     </Layout>
   )
 }
