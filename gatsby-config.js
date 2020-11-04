@@ -19,13 +19,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
+        name: `mamoru blog`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#EA80FC`,
+        theme_color: `#EA80FC`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `https://github.com/mamoruuu.png?size=64`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-styled-components`
