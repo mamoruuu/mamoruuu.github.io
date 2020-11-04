@@ -35,7 +35,7 @@ const PostTemplate: React.FC<Props> = ({ data }) => {
       <SEO title={post.title} />
       <PostContainer>
         <Links>
-          <Link to="/">
+          <Link to="/#content">
             <ArrowIcon src={require('../images/icons/left-arrow.svg')} alt=""/>
             Back to blog
           </Link>

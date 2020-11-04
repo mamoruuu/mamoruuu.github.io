@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import "./layout.css"
 import CallingCard from "./calling-card/calling-card"
 import Sidebar from "./sidebar/sidebar";
+import { LocalStorageKey } from "../models/local-storage";
 
 interface Props {
   children: ReactNode
@@ -39,6 +40,7 @@ const Container = styled.div`
 export default class Layout extends React.Component<Props> {
   private _canShowSidebar = !this.props.canShowCallingCard;
   private _callingCardRef = React.createRef<HTMLDivElement>();
+  private _callingCardScreenRef = React.createRef<HTMLDivElement>();
 
   componentDidMount() {
     if (this.props.canShowCallingCard) {
@@ -64,22 +66,24 @@ export default class Layout extends React.Component<Props> {
     if (isAbleToHideSidebar && this._canShowSidebar) {
       this._canShowSidebar = false;
       this.forceUpdate()
+      localStorage.removeItem(LocalStorageKey.ScrolledCard);
     } else if (!isAbleToHideSidebar && !this._canShowSidebar) {
       this._canShowSidebar = true;
       this.forceUpdate()
+      localStorage.setItem(LocalStorageKey.ScrolledCard, '1');
     }
   }
 
   render() {
     return (
       <>
-        {this.props.canShowCallingCard && <CallingCardScreen>
+        {this.props.canShowCallingCard && <CallingCardScreen ref={this._callingCardScreenRef}>
           <div ref={this._callingCardRef}>
             <CallingCard />
           </div>
         </CallingCardScreen>}
         {this._canShowSidebar && <Sidebar />}
-        <Content>
+        <Content id="content">
           <Container>
             {this.props.children}
           </Container>
