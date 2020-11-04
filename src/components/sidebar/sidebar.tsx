@@ -38,7 +38,7 @@ const Line = styled.span`
   flex-grow: 1;
   height: max-content;
   width: 1px;
-  background: #222;
+  background-image: var(--cool-gradient-top);
   margin: 0 0 20px;
 `
 

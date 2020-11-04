@@ -18,14 +18,24 @@ const Img = styled.img`
   object-fit: cover;
   border-radius: 100%;
   margin-bottom: 0;
-  border: 3px solid var(--color-pinky);
+  padding: 2px;
+  background-color: #fff;
+`
+
+const GradientWrap = styled.div`
+  padding: 3px;
+  border-radius: 100%;
+  background-image: var(--cool-gradient-right);
+  height: 100%;
 `
 
 const Avatar: React.FC<Props> = ({ className, style }) => {
   const url = `https://github.com/${github.replace('@', '')}.png`
   return <>
     <Wrap style={style} className={className}>
-      <Img src={url} />
+      <GradientWrap>
+        <Img src={url} />
+      </GradientWrap>
     </Wrap>
   </>
 }

@@ -4,6 +4,9 @@
   --color-pinky: #F181CB;
   --color-dark: #222;
   --color-white: #F8F8F8;
+
+  --cool-gradient-right: linear-gradient(to right, #80D8FF 0%, #88D1FF 16%, #9FBEFE 41.3%, #C4A0FD 72.5%, #EA80FC 100%);
+  --cool-gradient-top: linear-gradient(to top, #80D8FF, #88D1FF, #9FBEFE, #C4A0FD, #EA80FC);
 }
 
 html {
