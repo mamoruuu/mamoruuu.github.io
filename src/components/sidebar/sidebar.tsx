@@ -9,22 +9,33 @@ import { Link } from "gatsby";
 const StickyWrap = styled.div`
   position: sticky;
   top: 0;
-  height: 0;
+  z-index: 5;
+
+  @media screen and (min-width: 481px) {
+    height: 0;
+  }
 `
 
-const Wrap = styled.aside`
+const Aside = styled.aside`
   width: 84px;
   padding: 15px 15px 35px;
   position: relative;
   top: 0;
   left: 0;
   height: 100vh;
-  z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   overflow: auto;
+
+  @media screen and (max-width: 480px) {
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+    padding: 7px;
+    background-color: var(--color-white);
+  }
 `
 
 const Name = styled.span`
@@ -37,6 +48,10 @@ const Name = styled.span`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `
 
 const Line = styled.span`
@@ -46,13 +61,47 @@ const Line = styled.span`
   width: 1px;
   background-image: var(--cool-gradient-top);
   margin: 0 0 20px;
+  
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `
 
-const AvatarWrap = styled.span`
+const SmallCallingCard = styled.span`
   display: block;
   position: relative;
   width: fit-content;
   cursor: pointer;
+`
+
+const SidebarAvatar = styled(Avatar)`
+  --size: 54px;
+  width: var(--size);
+  height: var(--size);
+  @media screen and (max-width: 480px) {
+    --size: 35px;
+  }
+`
+
+const SidebarSocialMedia = styled(SocialMedia)`
+  @media screen and (min-width: 481px) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: 480px) {
+    width: auto;
+  }
+`
+
+const SidebarSocialIcon = styled(SocialMediaIcon)`
+  margin: 0;
+`
+
+const SidebarSocialLink = styled(SocialMediaLink)`
+  margin-top: 13px;
+  @media screen and (max-width: 480px) {
+    margin-top: 0;
+    margin-right: 15px;
+  }
 `
 
 export default class Sidebar extends React.Component {
@@ -70,7 +119,7 @@ export default class Sidebar extends React.Component {
     const githubUrl = `https://github.com/${github.replace('@','')}`
 
     const avatarSet = [
-      <Avatar key={0} style={{ width: '54px', height: '54px' }} />,
+      <SidebarAvatar key={0} />,
       <Name key={1}>
         <svg height="165" width="20">
           <text x="0" y="16" fill="#222222" transform="rotate(-90 0,0)">{fullName}</text>
@@ -79,27 +128,27 @@ export default class Sidebar extends React.Component {
     ]
 
     return <StickyWrap>
-      <Wrap>
+      <Aside>
         {this._isAtMainPage
-          ? <AvatarWrap tabIndex={0} onClick={() => this.scrollUp()}>
+          ? <SmallCallingCard tabIndex={0} onClick={() => this.scrollUp()}>
               {avatarSet}
-            </AvatarWrap>
-          : <Link to="/">
+            </SmallCallingCard>
+          : <Link to="/#">
               {avatarSet}
             </Link>
         }
 
         <Line />
 
-        <SocialMedia style={{ flexDirection: 'column' }}>
-          <SocialMediaLink href={twitterUrl}>
-            <SocialMediaIcon src={require('../../images/icons/twitter.svg')} alt="twitter" />
-          </SocialMediaLink>
-          <SocialMediaLink href={githubUrl} style={{ marginTop: '13px' }}>
-            <SocialMediaIcon src={require('../../images/icons/github.svg')} alt="github" />
-          </SocialMediaLink>
-        </SocialMedia>
-      </Wrap>
+        <SidebarSocialMedia className="sidebar__sm">
+          <SidebarSocialLink className="sidebar__sm-link" href={twitterUrl}>
+            <SidebarSocialIcon className="sidebar__sm-icon" src={require('../../images/icons/twitter.svg')} alt="twitter" />
+          </SidebarSocialLink>
+          <SidebarSocialLink className="sidebar__sm-link" href={githubUrl}>
+            <SidebarSocialIcon className="sidebar__sm-icon" src={require('../../images/icons/github.svg')} alt="github" />
+          </SidebarSocialLink>
+        </SidebarSocialMedia>
+      </Aside>
     </StickyWrap>
   }
 }

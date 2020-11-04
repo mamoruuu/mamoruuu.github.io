@@ -19,8 +19,14 @@ const CallingCardScreen = styled.section`
 `
 
 const Content = styled.main`
-  min-height: calc(100vh - 68px);
+  --footer-height: 68px;
+  min-height: calc(100vh - var(--footer-height));
   padding: 120px 84px 40px;
+
+  @media screen and (max-width: 480px) {
+    padding: 25px 15px 30px;
+    --footer-height: 40px;
+  }
 `
 
 const Footer = styled.footer`
@@ -29,6 +35,11 @@ const Footer = styled.footer`
   color: #AAAAAA;
   font-size: 18px;
   line-height: 1;
+
+  @media screen and (max-width: 480px) {
+    font-size: 14px;
+    padding-bottom: 26px;
+  }
 `
 
 const Container = styled.div`
