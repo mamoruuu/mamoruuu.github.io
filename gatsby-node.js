@@ -10,11 +10,11 @@ const path = require(`path`)
 exports.createPages = async ({ actions, graphql }) => {
   const result = await graphql(`
     {
-      allMarkdownRemark {
+      allMdx(sort: {fields: frontmatter___date, order: DESC}, limit: 10) {
         edges {
           node {
             frontmatter {
-              path
+              slug
             }
           }
         }
@@ -24,10 +24,10 @@ exports.createPages = async ({ actions, graphql }) => {
   if (result.errors) {
     console.error(result.errors)
   }
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+  result.data.allMdx.edges.forEach(({ node }) => {
     actions.createPage({
-      path: node.frontmatter.path,
-      component: path.resolve(`src/templates/post.tsx`),
+      path: `/${node.frontmatter.slug}`,
+      component: path.resolve(`src/templates/single-post.tsx`),
     })
   })
 }

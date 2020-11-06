@@ -5,7 +5,12 @@ module.exports = {
     author: `@mamorukuuun`
   },
   plugins: [
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -26,6 +31,12 @@ module.exports = {
         theme_color: `#EA80FC`,
         display: `minimal-ui`,
         icon: `https://github.com/mamoruuu.png?size=64`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        implementation: require(`sass`),
       },
     },
     `gatsby-plugin-styled-components`

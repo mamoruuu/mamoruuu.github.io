@@ -1,69 +1,38 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { Header, PostContainer, UnderTitle, Title1 } from "../components/post-styles"
-import styled from "styled-components"
+import { Link } from 'gatsby'
+import React from 'react'
+import styled from 'styled-components'
+import { Footer, Title2, Header, UnderTitle } from '../components/post-styles'
 
 interface Props {
-  data: any
+  /** contains post's UUID */
+  key: string
+  post: any
 }
 
-const Links = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
+const Article = styled.article`
+  & + & {
+    margin-top: 30px;
+    border-top: 2px solid var(--color-dark);
+    padding-top: 30px;
+  }
 `
 
-const ArrowIcon = styled.img`
-  display: inline-block;
-  width: 1.5em;
-  height: 1.5em;
-  line-height: 1;
-  margin: 0;
-  margin-right: 10px;
-  vertical-align: middle;
-`
-
-const PostTemplate: React.FC<Props> = ({ data }) => {
-  const { markdownRemark } = data
-  const { frontmatter: post, html, timeToRead } = markdownRemark
-  const publishDate = post.date
+const Post: React.FC<Props> = ({ post }) => {
+  const data = post.frontmatter
   return (
-    <Layout>
-      <SEO title={post.title} />
-      <PostContainer>
-        <Links>
-          <Link to="/#content">
-            <ArrowIcon src={require('../images/icons/left-arrow.svg')} alt=""/>
-            Back to blog
-          </Link>
-        </Links>
-        <article>
-          <Header>
-            <Title1>{post.title}</Title1>
-            <UnderTitle>Published at {publishDate}. {timeToRead} min of reading</UnderTitle>
-          </Header>
-          <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: html }} />
-        </article>
-      </PostContainer>
-    </Layout>
+    <Article>
+      <Header>
+        <Link to={'/' + data.slug}>
+          <Title2>{data.title}</Title2>
+        </Link>
+        <UnderTitle>Published at {data.date} | {post.timeToRead} min of reading</UnderTitle>
+      </Header>
+      <p dangerouslySetInnerHTML={{ __html: post.excerpt }}>{}</p>
+      <Footer>
+        <Link to={'/' + data.slug}>Read more</Link>
+      </Footer>
+    </Article>
   )
 }
 
-export default PostTemplate
-
-export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
-      timeToRead
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        path
-        title
-      }
-    }
-  }
-`
+export default Post
