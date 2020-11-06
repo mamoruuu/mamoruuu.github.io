@@ -13,6 +13,7 @@ exports.createPages = async ({ actions, graphql }) => {
       allMdx(sort: {fields: frontmatter___date, order: DESC}, limit: 10) {
         edges {
           node {
+            id
             frontmatter {
               slug
             }
@@ -27,7 +28,11 @@ exports.createPages = async ({ actions, graphql }) => {
   result.data.allMdx.edges.forEach(({ node }) => {
     actions.createPage({
       path: `/${node.frontmatter.slug}`,
-      component: path.resolve(`src/templates/single-post.tsx`),
+      component: path.resolve(`./src/templates/single-post.tsx`),
+      context: {
+        id: node.id,
+        slug: node.frontmatter.slug,
+      }
     })
   })
 }

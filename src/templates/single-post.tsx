@@ -56,9 +56,9 @@ const PostTemplate: React.FC<Props> = ({ data }) => {
 
 export default PostTemplate
 
-export const pageQuery = graphql`
-  query($slug: String) {
-    mdx(slug: { eq: $slug }) {
+export const query = graphql`
+  query($id: String!) {
+    mdx(id: { eq: $id }) {
       body
       timeToRead
       frontmatter {

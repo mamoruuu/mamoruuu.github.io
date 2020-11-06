@@ -13,7 +13,10 @@ import {Code} from './src/components/code'
 const components = {
   pre: preProps => {
     const props = preToCodeBlock(preProps)
-    return props ? <Code {...props} /> : <pre {...preProps} />
+    if (props) {
+      return <Code {...props} />
+    }
+    return <pre {...preProps} />
   },
   wrapper: ({ children }) => <>{children}</>
 }

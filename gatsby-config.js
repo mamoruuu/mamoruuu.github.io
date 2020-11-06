@@ -6,16 +6,19 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.mdx`, `.md`],
-      },
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `content`,
         path: `${__dirname}/content`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.mdx`, `.md`],
+        defaultLayouts: {
+          default: require.resolve(`./src/templates/single-post.tsx`),
+        }
       },
     },
     `gatsby-plugin-react-helmet`,
@@ -30,7 +33,7 @@ module.exports = {
         background_color: `#EA80FC`,
         theme_color: `#EA80FC`,
         display: `minimal-ui`,
-        icon: `https://github.com/mamoruuu.png?size=64`, // This path is relative to the root of the site.
+        // icon: `https://github.com/mamoruuu.png?size=64`, // This path is relative to the root of the site.
       },
     },
     {
