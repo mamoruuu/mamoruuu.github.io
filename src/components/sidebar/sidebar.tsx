@@ -67,14 +67,7 @@ const Line = styled.span`
   }
 `
 
-const SmallCallingCard = styled.span`
-  display: block;
-  position: relative;
-  width: fit-content;
-  cursor: pointer;
-`
-
-const SmallCallingCardLink = styled(Link)`
+const SmallCallingCard = styled(Link)`
   display: block;
   position: relative;
   width: fit-content;
@@ -121,31 +114,20 @@ export default class Sidebar extends React.Component {
     }
   }
 
-  private _isAtMainPage = typeof window !== "undefined" && window.location.pathname === '/'
-
   render() {
     const twitterUrl = `https://twitter.com/${twitter.replace('@','')}`
     const githubUrl = `https://github.com/${github.replace('@','')}`
 
-    const avatarSet = [
-      <SidebarAvatar key={0} />,
-      <Name key={1}>
-        <svg height="165" width="20">
-          <text x="0" y="16" fill="#222222" transform="rotate(-90 0,0)">{fullName}</text>
-        </svg>
-      </Name>
-    ]
-
     return <StickyWrap>
       <Aside>
-        {this._isAtMainPage
-          ? <SmallCallingCard tabIndex={0} onClick={() => this.scrollUp()}>
-              {avatarSet}
-            </SmallCallingCard>
-          : <SmallCallingCardLink to="/#">
-              {avatarSet}
-            </SmallCallingCardLink>
-        }
+        <SmallCallingCard to="/#">
+          <SidebarAvatar key={0} />
+          <Name key={1}>
+            <svg height="165" width="20">
+              <text x="0" y="16" fill="#222222" transform="rotate(-90 0,0)">{fullName}</text>
+            </svg>
+          </Name>
+        </SmallCallingCard>
 
         <Line />
 
