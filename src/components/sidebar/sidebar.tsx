@@ -74,6 +74,13 @@ const SmallCallingCard = styled.span`
   cursor: pointer;
 `
 
+const SmallCallingCardLink = styled(Link)`
+  display: block;
+  position: relative;
+  width: fit-content;
+  cursor: pointer;
+`
+
 const SidebarAvatar = styled(Avatar)`
   --size: 54px;
   width: var(--size);
@@ -135,9 +142,9 @@ export default class Sidebar extends React.Component {
           ? <SmallCallingCard tabIndex={0} onClick={() => this.scrollUp()}>
               {avatarSet}
             </SmallCallingCard>
-          : <Link to="/#">
+          : <SmallCallingCardLink to="/#">
               {avatarSet}
-            </Link>
+            </SmallCallingCardLink>
         }
 
         <Line />
