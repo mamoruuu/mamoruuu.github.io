@@ -106,13 +106,15 @@ const SidebarSocialLink = styled(SocialMediaLink)`
 
 export default class Sidebar extends React.Component {
   scrollUp(): void {
-    window.scroll({
-      top: 0,
-      behavior: 'smooth'
-    })
+    if (typeof window !== "undefined") {
+      window?.scroll({
+        top: 0,
+        behavior: 'smooth'
+      })
+    }
   }
 
-  private _isAtMainPage = window.location.pathname === '/'
+  private _isAtMainPage = typeof window !== "undefined" && window.location.pathname === '/'
 
   render() {
     const twitterUrl = `https://twitter.com/${twitter.replace('@','')}`
