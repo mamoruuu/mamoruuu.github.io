@@ -1,0 +1,58 @@
+---
+title: Кеш файлов через query-параметр в PHP
+date: 2018-03-22
+slug: php-page-resource-cache
+---
+
+1. Обьявить функцию `useCss()`, которая будет возвращать строку с тегом `<link>`, а в качестве аргумента будет принимать путь до CSS-файла относительно `$_SERVER['DOCUMENT_ROOT']`.
+
+```php
+function useCss($link) {
+  $dateTemplate = 'd-m-Y_G:i:s';
+  $cacheQuery = date($dateTemplate, filemtime($_SERVER['DOCUMENT_ROOT'].'/'.$link));
+  return "<link rel='stylesheet' href='/{$link}?{$cacheQuery}' />";
+}
+```
+
+2. Заменить теги `<link>` на странице вот такой конструкцией:
+
+```php
+<head>
+<?=useCss('css/styles.css'); ?>
+</head>
+```
+
+Аналогичный метод можно написать и для добавления JS-файлов.
+
+```php
+function useJs($link) {
+  $dateTemplate = 'd-m-Y_G:i:s';
+  $cacheQuery = date($dateTemplate, filemtime($_SERVER['DOCUMENT_ROOT'].'/'.$link));
+  return "<script src='/{$link}?{$cacheQuery}'></script>";
+}
+```
+
+В итоге код веб-страницы будет выглядеть так:
+
+```php
+<?php
+function useCss($link) {
+  $anticache = date('d-m-Y_G:i:s', filemtime($_SERVER['DOCUMENT_ROOT'].'/'.$link));
+  return "<link rel='stylesheet' href='/{$link}?{$anticache}' />\n";
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Document</title>
+
+  <?=useCss('css/libs.css'); ?>
+  <?=useCss('css/styles.css'); ?>
+</head>
+<body>
+  <h1>Привет, мир!</h1>
+
+  <?=useJs('js/main.js'); ?>
+</body>
+</html>
+```

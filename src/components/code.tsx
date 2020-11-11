@@ -15,10 +15,15 @@ const Wrap = styled.div`
   margin-left: calc(var(--padding) * -1);
   font-family: var(--font-mono);
   position: relative;
+  font-variant-ligatures: none;
 
   @media screen and (max-width: 900px) {
     --padding: 15px;
     margin-left: 0;
+  }
+
+  @media screen and (min-width: 901px) {
+    box-sizing: content-box;
   }
 `
 
@@ -27,6 +32,7 @@ export const Pre = styled.pre`
   width: calc(100% + var(--padding));
   position: relative;
   font-family: var(--font-mono);
+  border-radius: 10px;
 
   @media screen and (max-width: 900px) {
     width: 100%;
