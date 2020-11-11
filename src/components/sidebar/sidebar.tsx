@@ -121,8 +121,8 @@ export default class Sidebar extends React.Component {
     return <StickyWrap>
       <Aside>
         <SmallCallingCard to="/#">
-          <SidebarAvatar key={0} />
-          <Name key={1}>
+          <SidebarAvatar />
+          <Name>
             <svg height="165" width="20">
               <text x="0" y="16" fill="#222222" transform="rotate(-90 0,0)">{fullName}</text>
             </svg>
