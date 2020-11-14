@@ -8,7 +8,7 @@ export const PostContainer = styled.div`
   margin: 0 auto;
 `
 
-export const Header = styled.header`
+export const Header = styled.div`
   display: block;
   margin-bottom: 30px;
 `

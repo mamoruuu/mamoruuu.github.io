@@ -28,6 +28,17 @@ const ArrowIcon = styled.img`
   vertical-align: middle;
 `
 
+const Source = styled.a`
+  display: block;
+  font-size: .8em;
+  margin-top: 15px;
+`
+
+const getDomainName = (urlLike: string): string => {
+  const url = new URL(urlLike);
+  return url.host;
+}
+
 const PostTemplate: React.FC<Props> = ({ data }) => {
   const { mdx: { frontmatter, body, timeToRead } } = data
   return (
@@ -44,6 +55,7 @@ const PostTemplate: React.FC<Props> = ({ data }) => {
           <Header>
             <Title1>{frontmatter.title}</Title1>
             <UnderTitle>Published at {frontmatter.date} | {timeToRead} min of reading</UnderTitle>
+            {frontmatter.source && <Source href={frontmatter.source} target="_blank" rel="nofollow noreferer noopener">Source: {getDomainName(frontmatter.source)}</Source>}
           </Header>
           <PostContent>
             <MDXRenderer>{body}</MDXRenderer>
@@ -65,6 +77,7 @@ export const query = graphql`
         date(formatString: "MMMM DD, YYYY")
         slug
         title
+        source
       }
     }
   }
