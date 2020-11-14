@@ -10,10 +10,38 @@ interface Props {
 }
 
 const Article = styled.article`
+  margin-left: -20px;
+  width: calc(100% + 40px);
+  border-radius: 20px;
+  position: relative;
+
+  > div {
+    padding: 20px;
+    background: #FFF;
+    z-index: 2;
+    border-radius: 17px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 7px;
+    left: -7px;
+    width: 100%;
+    height: 100%;
+    background: var(--cool-gradient-right); 
+    z-index: -1;
+    border-radius: 20px;
+  }
+
+  &:focus-within::after {
+    top: 10px;
+    left: -10px;
+  }
+
   & + & {
-    margin-top: 30px;
-    border-top: 2px solid var(--color-dark);
-    padding-top: 30px;
+    margin-top: 40px;
   }
 `
 
@@ -21,16 +49,18 @@ const Post: React.FC<Props> = ({ post }) => {
   const data = post.frontmatter
   return (
     <Article>
-      <Header>
-        <Link to={'/' + data.slug}>
-          <Title2>{data.title}</Title2>
-        </Link>
-        <UnderTitle>Published at {data.date} | {post.timeToRead} min of reading</UnderTitle>
-      </Header>
-      <p dangerouslySetInnerHTML={{ __html: post.excerpt }}>{}</p>
-      <Footer>
-        <Link to={'/' + data.slug}>Read more</Link>
-      </Footer>
+      <div>
+        <Header>
+          <Link to={'/' + data.slug}>
+            <Title2>{data.title}</Title2>
+          </Link>
+          <UnderTitle>Published at {data.date} | {post.timeToRead} min of reading</UnderTitle>
+        </Header>
+        <p dangerouslySetInnerHTML={{ __html: post.excerpt }}>{}</p>
+        <Footer>
+          <Link to={'/' + data.slug}>Read more</Link>
+        </Footer>
+      </div>
     </Article>
   )
 }
