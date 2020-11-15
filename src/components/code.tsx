@@ -1,6 +1,7 @@
 import React from 'react'
 import Highlight, {defaultProps, Language} from 'prism-react-renderer'
-import theme from 'prism-react-renderer/themes/dracula'
+import darkTheme from 'prism-react-renderer/themes/oceanicNext'
+import lightTheme from 'prism-react-renderer/themes/github'
 import styled from 'styled-components'
 
 interface Props {
@@ -63,26 +64,33 @@ const LanguageMark = styled.span`
   }
 `
 
-export const Code: React.FC<Props> = ({ codeString, language, ...props }) => (
-  <Highlight
-    {...defaultProps}
-    code={codeString}
-    language={language}
-    theme={theme}
-  >
-    {({ className, style, tokens, getLineProps, getTokenProps }) => (
-      <Wrap className="gatsby-highlight" data-language={language} {...props}>
-        <LanguageMark>{language}</LanguageMark>
-        <Pre className={className} style={style}>
-          {tokens.map((line, i) => (
-            <CodeLine {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span {...getTokenProps({ token, key })}/>
-              ))}
-            </CodeLine>
-          ))}
-        </Pre>
-      </Wrap>
-    )}
-  </Highlight>
-)
+const isDarkTheme = (): boolean => {
+  return window && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
+export const Code: React.FC<Props> = ({ codeString, language, ...props }) => {
+  
+  return (
+    <Highlight
+      {...defaultProps}
+      code={codeString}
+      language={language}
+      theme={isDarkTheme() ? darkTheme : lightTheme}
+    >
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <Wrap className="gatsby-highlight" data-language={language} {...props}>
+          <LanguageMark>{language}</LanguageMark>
+          <Pre className={className} style={style}>
+            {tokens.map((line, i) => (
+              <CodeLine {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  <span {...getTokenProps({ token, key })}/>
+                ))}
+              </CodeLine>
+            ))}
+          </Pre>
+        </Wrap>
+      )}
+    </Highlight>
+  )
+}

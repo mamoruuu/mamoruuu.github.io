@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react"
 import styled from 'styled-components'
 
-import "./layout.css"
+import "./layout.scss"
 import CallingCard from "./calling-card/calling-card"
 import Sidebar from "./sidebar/sidebar";
 
@@ -21,7 +21,7 @@ const CallingCardScreen = styled.section`
 const Content = styled.main`
   --footer-height: 68px;
   min-height: calc(100vh - var(--footer-height));
-  padding: 120px 84px 40px;
+  padding: 200px 84px 40px;
 
   @media screen and (max-width: 480px) {
     padding: 25px 15px 30px;
@@ -32,7 +32,7 @@ const Content = styled.main`
 const Footer = styled.footer`
   text-align: center;
   padding-bottom: 50px;
-  color: #AAAAAA;
+  color: var(--copyright-color);
   font-size: 18px;
   line-height: 1;
 

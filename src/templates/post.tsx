@@ -17,22 +17,9 @@ const Article = styled.article`
 
   > div {
     padding: 20px;
-    background: #FFF;
+    background: var(--post-background);
     z-index: 2;
     border-radius: 17px;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    display: block;
-    top: 7px;
-    left: -7px;
-    width: 100%;
-    height: 100%;
-    background: var(--cool-gradient-right); 
-    z-index: -1;
-    border-radius: 20px;
   }
 
   &:focus-within::after {

@@ -59,7 +59,7 @@ const Line = styled.span`
   flex-grow: 1;
   height: max-content;
   width: 1px;
-  background-image: var(--cool-gradient-top);
+  background: var(--sidebar-line-background);
   margin: 0 0 20px;
   
   @media screen and (max-width: 480px) {
@@ -124,7 +124,7 @@ export default class Sidebar extends React.Component {
           <SidebarAvatar />
           <Name>
             <svg height="165" width="20">
-              <text x="0" y="16" fill="#222222" transform="rotate(-90 0,0)">{fullName}</text>
+              <text x="0" y="16" fill="var(--sidebar-fullname-color)" transform="rotate(-90 0,0)">{fullName}</text>
             </svg>
           </Name>
         </SmallCallingCard>

@@ -19,13 +19,13 @@ const Img = styled.img`
   border-radius: 100%;
   margin-bottom: 0;
   padding: 2px;
-  background-color: #fff;
+  background-color: var(--background-color);
 `
 
 const GradientWrap = styled.div`
   padding: 3px;
   border-radius: 100%;
-  background-image: var(--cool-gradient-right);
+  background-image: var(--avatar-border);
   height: 100%;
 `
 

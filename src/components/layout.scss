@@ -1,29 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap');
 
+%light-scheme {
+  --background-color: var(--color-white);
+  --text-color: var(--color-dark);
+  --link-color: var(--color-pinky);
+  --heading-color: var(--color-pinky);
+  --post-background: var(--color-whitest);
+  --post-underlayer-background: var(--cool-gradient-right);
+  --copyright-color: var(--color-gray);
+  --avatar-border: var(--cool-gradient-right);
+  --kbd-border-color: var(--color-dark);
+  --kbd-background: var(--color-whitest);
+  --sidebar-line-background: var(--cool-gradient-top);
+  --sidebar-fullname-color: var(--color-dark);
+}
+
 :root {
   --color-pinky: #F181CB;
   --color-dark: #222;
+  --color-dark-2: #111;
+  --color-dark-3: #292929;
+  --color-gray: #AAAAAA;
   --color-white: #F8F8F8;
+  --color-white-2: #f1f1f1;
+  --color-whitest: #fff;
 
-  --cool-gradient-right: linear-gradient(to right, #80D8FF 0%, #88D1FF 16%, #9FBEFE 41.3%, #C4A0FD 72.5%, #EA80FC 100%);
-  --cool-gradient-top: linear-gradient(to top, #80D8FF, #88D1FF, #9FBEFE, #C4A0FD, #EA80FC);
+  --grad-blue-1: #80D8FF;
+  --grad-blue-2: #88D1FF;
+  --grad-blue-3: #9FBEFE;
+  --grad-purple: #C4A0FD;
+  --grad-pink: #EA80FC;
+
+  --cool-gradient-right: linear-gradient(to right, var(--grad-blue-1) 0%, var(--grad-blue-2) 16%, var(--grad-blue-3) 41.3%, var(--grad-purple) 72.5%, var(--grad-pink) 100%);
+  --cool-gradient-top: linear-gradient(to bottom, var(--grad-blue-1) 0%, var(--grad-blue-2) 16%, var(--grad-blue-3) 41.3%, var(--grad-purple) 72.5%, var(--grad-pink) 100%);
 
   --font-serif: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   --font-mono: 'Jetbrains Mono', 'Roboto Mono', monospace;
+
+  --scrollbar-thumb-color: var(--cool-gradient-top);
+  --scrollbar-track-color: var(--color-white-2);
+  
+  --webkit-scrollbar-thumb-color: var(--scrollbar-thumb-color);
+  --webkit-scrollbar-track-color: var(--scrollbar-track-color);
+  --moz-scrollbar-thumb-color: var(--grad-purple);
+  --moz-scrollbar-track-color: var(--scrollbar-track-color);
+
+  @extend %light-scheme;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--webkit-scrollbar-track-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--cool-gradient-top);
+  background: var(--webkit-scrollbar-thumb-color);
 }
 
 html {
@@ -35,14 +71,48 @@ html {
   scroll-behavior: smooth;
 
   scrollbar-width: thin;
-  scrollbar-color: #C4A0FD #f1f1f1;
+  scrollbar-color: var(--moz-scrollbar-thumb-color) var(--moz-scrollbar-track-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:root {
+    --background-color: var(--color-dark);
+    --text-color: var(--color-white);
+    --link-color: var(--color-pinky);
+    --heading-color: var(--color-pinky);
+    --post-background: var(--color-dark-3);
+    --post-underlayer-background: var(--cool-gradient-right);
+    --copyright-color: var(--color-gray);
+    --sidebar-fullname-color: var(--color-gray);
+  
+    --kbd-border-color: var(--color-dark);
+    --kbd-background: var(--color-dark-2);
+  }
+}
+
+html.light-theme {
+  @extend %light-scheme;
+}
+
+html.dark-theme {
+  --background-color: var(--color-dark);
+  --text-color: var(--color-white);
+  --link-color: var(--color-pinky);
+  --heading-color: var(--color-pinky);
+  --post-background: var(--color-dark-3);
+  --post-underlayer-background: var(--cool-gradient-right);
+  --copyright-color: var(--color-gray);
+  --sidebar-fullname-color: var(--color-gray);
+
+  --kbd-border-color: var(--color-dark);
+  --kbd-background: var(--color-dark-2);
 }
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--color-dark);
+  color: var(--text-color);
   font-family: var(--font-serif);
   font-weight: normal;
   word-wrap: break-word;
@@ -52,7 +122,7 @@ body {
   -ms-font-feature-settings: "kern", "liga", "clig", "calt";
   -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
   font-feature-settings: "kern", "liga", "clig", "calt";
-  background: var(--color-white);
+  background: var(--background-color);
 
 }
 article,
@@ -89,7 +159,7 @@ template {
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
-  color: var(--color-pinky);
+  color: var(--link-color);
   text-decoration: none;
 }
 a:active,
