@@ -1,7 +1,6 @@
 import React from 'react'
 import Highlight, {defaultProps, Language} from 'prism-react-renderer'
 import darkTheme from 'prism-react-renderer/themes/oceanicNext'
-import lightTheme from 'prism-react-renderer/themes/github'
 import styled from 'styled-components'
 
 interface Props {
@@ -64,10 +63,6 @@ const LanguageMark = styled.span`
   }
 `
 
-const isDarkTheme = (): boolean => {
-  return window && window.matchMedia('(prefers-color-scheme: dark)').matches;
-}
-
 export const Code: React.FC<Props> = ({ codeString, language, ...props }) => {
   
   return (
@@ -75,7 +70,7 @@ export const Code: React.FC<Props> = ({ codeString, language, ...props }) => {
       {...defaultProps}
       code={codeString}
       language={language}
-      theme={isDarkTheme() ? darkTheme : lightTheme}
+      theme={darkTheme}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Wrap className="gatsby-highlight" data-language={language} {...props}>
