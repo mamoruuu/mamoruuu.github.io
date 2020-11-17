@@ -30,6 +30,11 @@ const Article = styled.article`
   & + & {
     margin-top: 40px;
   }
+
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    margin-left: 0;
+  }
 `
 
 const Post: React.FC<Props> = ({ post }) => {
