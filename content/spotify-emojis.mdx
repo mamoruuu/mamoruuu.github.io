@@ -1,20 +1,46 @@
 ---
-title: Эмодзи в спотифае на Linux
+title: Эмодзи в Linux-версии Spotify и других Electron-приложениях
 date: 2020-01-28
 slug: linux-spotify-emoji
 source: https://victor.kropp.name/blog/emoji-on-linux/
 ---
 
-Точно работает в Spotify, установленный из их apt-репозитория. Нужно будет проверить snap- и -flatpak версию.
-
-Это не баг Spotify.
+Точно работает в Spotify, установленный из их apt-репозитория, и во Flatpak-версии. Нужно будет проверить snap-версию.
 
 1. Нужно установить шрифт с цветными эмодзи. Я установил _Noto Color Emoji_.
 
-2. Нужно сообщить системе об эмодзи в шрифте. Для этого нужно создать файл `~/.config/fontconfig/fonts.conf` (файл в этом гисте)
+2. Нужно сообщить системе об эмодзи в шрифте. Для этого нужно создать файл `~/.config/fontconfig/fonts.conf` со следующим содержимым:
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+    <fontconfig>
+      <alias>
+        <family>serif</family>
+        <prefer>
+          <family>Noto Color Emoji</family>
+        </prefer>
+      </alias>
+      <alias>
+        <family>sans-serif</family>
+        <prefer>
+          <family>Noto Color Emoji</family>
+        </prefer>
+      </alias>
+      <alias>
+        <family>monospace</family>
+        <prefer>
+          <family>Noto Color Emoji</family>
+        </prefer>
+      </alias>
+    </fontconfig>
+    ```
 
 3. Применить этот файл командой `fc-cache -f -v`.
 
 После перезапуска приложения цветные эмодзи успешно отобразятся.
 
 ![Imgur](https://i.imgur.com/NJhXmcl.png)
+
+## Flatpak
+
+Проделываем ту же инструкцию, но в файл `fonts.conf` создаём в директории `~/.var/app/com.spotify.Client/config/fontconfig`.
