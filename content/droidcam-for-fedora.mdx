@@ -10,6 +10,18 @@ slug: droidcam-for-fedora-33
 
 При попытке запустить `sudo dnf install linux-headers-$(uname -r)` dnf не может ничего найти.
 
-Оказывается, вместо `linux-headers-$(uname -r)` нужно устанавливать kernel-devel. dnf сам разрулит, для какой версии ядра нужно установить данный пакет.
+Оказывается, вместо `linux-headers-$(uname -r)` нужно устанавливать `kernel-devel`. dnf сам разрулит, для какой версии ядра нужно установить данный пакет.
 
-После чего установка проходит без проблем.
+После чего установка Droidcam проходит без проблем.
+
+Таким образом, вот такие команды нужно выполнить для установки Droidcam:
+
+```shell
+sudo dnf install kernel-devel gcc make
+wget https://files.dev47apps.net/linux/droidcam_latest.zip
+unzip droidcam_latest.zip -d droidcam
+cd droidcam
+sudo ./install-client
+sudo ./install-video
+sudo ./install-audio
+```
