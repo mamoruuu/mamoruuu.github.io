@@ -43,7 +43,7 @@ const Post: React.FC<Props> = ({ post }) => {
           </Link>
           <UnderTitle>Published at {data.date} | {post.timeToRead} min of reading</UnderTitle>
         </Header>
-        <p dangerouslySetInnerHTML={{ __html: post.excerpt }}>{}</p>
+        <div dangerouslySetInnerHTML={{ __html: post.excerpt }}></div>
         <Footer>
           <Link to={'/' + data.slug}>Read more</Link>
         </Footer>
