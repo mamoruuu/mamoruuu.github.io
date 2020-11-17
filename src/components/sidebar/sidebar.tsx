@@ -78,29 +78,9 @@ const SidebarAvatar = styled(Avatar)`
   --size: 54px;
   width: var(--size);
   height: var(--size);
+
   @media screen and (max-width: 480px) {
     --size: 35px;
-  }
-`
-
-const SidebarSocialMedia = styled(SocialMedia)`
-  @media screen and (min-width: 481px) {
-    flex-direction: column;
-  }
-  @media screen and (max-width: 480px) {
-    width: auto;
-  }
-`
-
-const SidebarSocialIcon = styled(SocialMediaIcon)`
-  margin: 0;
-`
-
-const SidebarSocialLink = styled(SocialMediaLink)`
-  margin-top: 13px;
-  @media screen and (max-width: 480px) {
-    margin-top: 0;
-    margin-right: 15px;
   }
 `
 
@@ -131,14 +111,14 @@ export default class Sidebar extends React.Component {
 
         <Line />
 
-        <SidebarSocialMedia className="sidebar__sm">
-          <SidebarSocialLink className="sidebar__sm-link" href={twitterUrl}>
-            <SidebarSocialIcon className="sidebar__sm-icon" src={require('../../images/icons/twitter.svg')} alt="twitter" />
-          </SidebarSocialLink>
-          <SidebarSocialLink className="sidebar__sm-link" href={githubUrl}>
-            <SidebarSocialIcon className="sidebar__sm-icon" src={require('../../images/icons/github.svg')} alt="github" />
-          </SidebarSocialLink>
-        </SidebarSocialMedia>
+        <SocialMedia direction="column" mobileDirection="row">
+          <SocialMediaLink href={twitterUrl}>
+            <SocialMediaIcon src={require('../../images/icons/twitter.svg')} alt="twitter" />
+          </SocialMediaLink>
+          <SocialMediaLink href={githubUrl}>
+            <SocialMediaIcon src={require('../../images/icons/github.svg')} alt="github" />
+          </SocialMediaLink>
+        </SocialMedia>
       </Aside>
     </StickyWrap>
   }
