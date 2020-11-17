@@ -16,6 +16,7 @@
   --sidebar-line-background: var(--cool-gradient-top);
   --sidebar-fullname-color: var(--color-dark);
   --blockquote-line-background: var(--cool-gradient-top);
+  --code-line-background: var(--color-dark-3);
 }
 
 :root {
@@ -23,6 +24,7 @@
   --color-dark: #222;
   --color-dark-2: #111;
   --color-dark-3: #292929;
+  --color-dark-4: #404040;
   --color-gray: #AAAAAA;
   --color-white: #F8F8F8;
   --color-white-2: #f1f1f1;
@@ -92,6 +94,7 @@ html {
     --kbd-background: var(--color-dark-2);
     --scrollbar-track-color: var(--color-dark-2);
     --blockquote-line-background: var(--cool-gradient-top);
+    --code-line-background: var(--color-dark-4);
   }
 }
 
@@ -689,12 +692,16 @@ td:last-child {
 }
 tt,
 code {
-  background-color: hsla(0, 0%, 0%, 0.04);
+  background-color: var(--code-line-background);
   border-radius: 3px;
   font-family: var(--font-mono);
-  padding: 0;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
+  padding: 0.2em;
+  border-radius: .4em;
+
+  &::before,
+  &::after {
+    display: none;
+  }
 }
 pre code {
   background: none;
