@@ -17,6 +17,7 @@
   --sidebar-fullname-color: var(--color-dark);
   --blockquote-line-background: var(--cool-gradient-top);
   --code-line-background: var(--color-dark-3);
+  --sidebar-mobile-background: var(--color-white);
 }
 
 :root {
@@ -95,6 +96,7 @@ html {
     --scrollbar-track-color: var(--color-dark-2);
     --blockquote-line-background: var(--cool-gradient-top);
     --code-line-background: var(--color-dark-4);
+    --sidebar-mobile-background: var(--color-dark);
   }
 }
 
@@ -114,6 +116,8 @@ html.dark-theme {
 
   --kbd-border-color: var(--color-dark);
   --kbd-background: var(--color-dark-2);
+  --code-line-background: var(--color-dark-4);
+  --sidebar-mobile-background: var(--color-dark);
 }
 
 body {

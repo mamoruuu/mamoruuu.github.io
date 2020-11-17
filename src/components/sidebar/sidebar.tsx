@@ -34,7 +34,7 @@ const Aside = styled.aside`
     height: auto;
     width: 100%;
     padding: 7px;
-    background-color: var(--color-white);
+    background-color: var(--sidebar-mobile-background);
   }
 `
 
