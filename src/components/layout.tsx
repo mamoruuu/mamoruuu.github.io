@@ -1,21 +1,43 @@
 import React, { ReactNode } from "react"
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 import "./layout.scss"
 import CallingCard from "./calling-card/calling-card"
 import Sidebar from "./sidebar/sidebar";
+import pattern from '../images/pattern.svg';
 
 interface Props {
   children: ReactNode
   canShowCallingCard?: boolean
 }
 
-const CallingCardScreen = styled.section`
+interface CallingCardScreenProps {
+  canSnow?: boolean;
+}
+
+const snowFall = keyframes`
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 500% 1000%;
+  }
+`
+
+const CallingCardScreen = styled.section<CallingCardScreenProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   padding: 15px;
+
+  ${props => props.canSnow && css`
+    background-image: url(${pattern});
+    background-size: 380px;
+    background-repeat: repeat;
+    box-shadow: 0 -60px 40px -20px var(--background-color) inset;
+    animation: ${snowFall} 100s linear infinite;
+  `}
 `
 
 const Content = styled.main`
@@ -51,7 +73,7 @@ export default class Layout extends React.Component<Props> {
   render() {
     return (
       <>
-        {this.props.canShowCallingCard && <CallingCardScreen>
+        {this.props.canShowCallingCard && <CallingCardScreen canSnow={true}>
           <CallingCard />
         </CallingCardScreen>}
         <Sidebar />
