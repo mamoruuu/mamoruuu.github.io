@@ -5,6 +5,7 @@ import "./layout.scss"
 import CallingCard from "./calling-card/calling-card"
 import Sidebar from "./sidebar/sidebar";
 import XmasInstallation from "./xmas-installation";
+import FigureInstallation from "./figure-installation";
 
 interface Props {
   children: ReactNode
@@ -53,6 +54,7 @@ export default class Layout extends React.Component<Props> {
     return (
       <>
         {this.props.canShowCallingCard && <CallingCardScreen>
+          <FigureInstallation />
           <XmasInstallation />
           <CallingCard />
         </CallingCardScreen>}
