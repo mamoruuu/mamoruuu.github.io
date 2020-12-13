@@ -74,9 +74,9 @@ const CallingCard = () => {
   return <>
     <Wrap>
       <AvatarWrap>
-        <Avatar style={{
+        <Avatar size={210} style={{
           width: '100%',
-          height: '100%',
+          height: '100%'
         }} />
       </AvatarWrap>
       <Summary>

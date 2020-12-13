@@ -4,7 +4,8 @@ import { github } from '../../data/author.json'
 
 interface Props {
   className?: string;
-  style?: { [cssProp: string]: string | number }
+  style?: { [cssProp: string]: string | number };
+  size?: number;
 }
 
 const Wrap = styled.figure`
@@ -29,12 +30,15 @@ const GradientWrap = styled.div`
   height: 100%;
 `
 
-const Avatar: React.FC<Props> = ({ className, style }) => {
-  const url = `https://github.com/${github.replace('@', '')}.png`
+const Avatar: React.FC<Props> = ({ className, style, size = 210 }) => {
+  const url = new URL(`https://github.com/${github.replace('@', '')}.png`)
+  if (size) {
+    url.searchParams.append('size', size.toString());
+  }
   return <>
     <Wrap style={style} className={className}>
       <GradientWrap>
-        <Img src={url} />
+        <Img src={url.toString()} />
       </GradientWrap>
     </Wrap>
   </>
