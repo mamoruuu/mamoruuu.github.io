@@ -16,7 +16,7 @@
   --sidebar-line-background: var(--cool-gradient-top);
   --sidebar-fullname-color: var(--color-dark);
   --blockquote-line-background: var(--cool-gradient-top);
-  --code-line-background: var(--color-dark-3);
+  --code-line-background: var(--color-white-3);
   --sidebar-mobile-background: var(--color-white);
 }
 
@@ -29,6 +29,7 @@
   --color-gray: #AAAAAA;
   --color-white: #F8F8F8;
   --color-white-2: #f1f1f1;
+  --color-white-3: #e0e0e0;
   --color-whitest: #fff;
   --color-night-blue: #132654;
 
@@ -97,6 +98,7 @@ html {
     --scrollbar-track-color: var(--color-dark-2);
     --blockquote-line-background: var(--cool-gradient-top);
     --code-line-background: var(--color-dark-4);
+    --code-line-color: var(--color-white);
     --sidebar-mobile-background: var(--color-dark);
   }
 }
@@ -698,6 +700,7 @@ td:last-child {
 tt,
 code {
   background-color: var(--code-line-background);
+  color: var(--code-line-color);
   border-radius: 3px;
   font-family: var(--font-mono);
   padding: 0.2em;
