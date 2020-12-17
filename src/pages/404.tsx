@@ -1,5 +1,5 @@
 import { Link } from "gatsby"
-import React, { forwardRef } from "react"
+import React from "react"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
