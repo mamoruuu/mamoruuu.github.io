@@ -1,11 +1,13 @@
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
-    title: `Alexander Bolotskov's blog (not really)`,
+    title: `Alexander Bolotskov's blog (kinda)`,
     description: `I love JS, pizza and anime profile pictures`,
     author: `@mamorukuuun`
   },
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -14,17 +16,34 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/images`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
         defaultLayouts: {
           default: require.resolve(`./src/templates/single-post.tsx`),
-        }
+        },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              withWebp: true,
+              withAvif: true,
+              quality: 80,
+              markdownCaptions: true,
+              maxWidth: 720,
+              disableBgImageOnAlpha: true,
+            }
+          }
+        ]
       },
     },
     `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
