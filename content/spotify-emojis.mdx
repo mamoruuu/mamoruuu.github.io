@@ -43,4 +43,7 @@ source: https://victor.kropp.name/blog/emoji-on-linux/
 
 ## Flatpak
 
-Проделываем ту же инструкцию, но в файл `fonts.conf` создаём в директории `~/.var/app/com.spotify.Client/config/fontconfig`.
+Проделываем ту же инструкцию, но в файл `fonts.conf` создаём в директории `~/.var/app/com.spotify.Client/config/fontconfig`. Можно даже симлинку сделать:
+```shell
+ln -s ~/.config/fontconfig/fonts.conf ~/.var/app/com.spotify.Client/config/fontconfig/fonts.conf
+```
