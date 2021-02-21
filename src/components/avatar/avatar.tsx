@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { github } from '../../data/author.json'
+import { github } from '../../data/author'
 
 interface Props {
   className?: string;

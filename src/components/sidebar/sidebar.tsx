@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "../avatar/avatar";
 
-import { twitter, github, fullName } from '../../data/author.json'
+import { twitter, github, fullName } from '../../data/author'
 import { SocialMedia, SocialMediaIcon, SocialMediaLink } from "../social-media";
 import styled from "styled-components";
 import { Link } from "gatsby";

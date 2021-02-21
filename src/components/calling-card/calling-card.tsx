@@ -1,5 +1,5 @@
 import React from "react"
-import { fullName, summary, twitter, github } from '../../data/author.json'
+import { fullName, summary, twitter, github } from '../../data/author.ts'
 import Avatar from "../avatar/avatar"
 import styled from "styled-components"
 import { SocialMedia, SocialMediaIcon, SocialMediaLink } from "../social-media"
