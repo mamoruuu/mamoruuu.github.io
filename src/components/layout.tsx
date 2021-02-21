@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import "./layout.scss"
 import CallingCard from "./calling-card/calling-card"
 import Sidebar from "./sidebar/sidebar";
-import FigureInstallation from "./figure-installation";
 
 interface Props {
   children: ReactNode
@@ -17,6 +16,10 @@ const CallingCardScreen = styled.section`
   align-items: center;
   height: 100vh;
   padding: 15px;
+  background-image: radial-gradient(#646464 1px, rgba(255, 255, 255, 0) 0);
+  background-size: 40px 40px;
+  background-repeat: repeat;
+  background-attachment: fixed;
 `
 
 const Content = styled.main`
@@ -53,7 +56,6 @@ export default class Layout extends React.Component<Props> {
     return (
       <>
         {this.props.canShowCallingCard && <CallingCardScreen>
-          <FigureInstallation />
           <CallingCard />
         </CallingCardScreen>}
         <Sidebar />
