@@ -46,13 +46,13 @@ const Article = styled.article`
   &::before {
     top: -2px;
     left: -2px;
-    background-image: var(--cool-gradient-top-left);
+    background-image: var(--cool-gradient-bottom);
   }
 
   &::after {
     bottom: -2px;
     right: -2px;
-    background-image: var(--cool-gradient-top-left);
+    background-image: var(--cool-gradient-bottom);
   }
 
   &:hover {

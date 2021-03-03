@@ -9,6 +9,8 @@ import { ThemeProvider } from "styled-components"
 import {preToCodeBlock} from 'mdx-utils'
 import {Code} from './src/components/code'
 
+import "remark-admonitions/styles/classic.css";
+
 // You can delete this file if you're not using it
 
 const components = {
