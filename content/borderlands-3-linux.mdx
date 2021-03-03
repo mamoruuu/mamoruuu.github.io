@@ -9,6 +9,8 @@ source: https://www.shernet.com/linux/borderlands-3-on-linux/
 
 > В статье рассматриваются решения баг для Steam-версии игры.
 
+Для других дистрибутивов Linux такие же
+
 ## Исправляем видеоролики в игре
 
 Это фикс исправит все видеовставки в игре:
@@ -28,7 +30,7 @@ source: https://www.shernet.com/linux/borderlands-3-on-linux/
 Устанавливаем зависимости:
 
 ```shell
-sudo dnf install cabextract python2
+sudo dnf install git libudev cabextract python2
 ```
 
 Качаем и запускаем скрипт [`mf-install`](https://github.com/z0z0z/mf-install)
