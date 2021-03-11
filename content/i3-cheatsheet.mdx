@@ -1,0 +1,91 @@
+---
+title: i3wm cheatsheet
+date: 2021-03-12
+slug: i3wm-cheatsheet
+source: https://www.youtube.com/watch?v=j1I63wGcvU4&list=PL5ze0DjYv5DbCv9vNEzFmP6sU7ZmkGzcf
+---
+
+:::note
+Статья будет пополняться по мере моего знакомства с i3wm
+:::
+
+# Основы
+
+Мод-клавиша (<kbd>$mod</kbd>) - это основная клавиша, от которой идут все хоткеи i3. Обычно такой клавишей выступает Super (Windows), она же и рекомендуется в большинстве случаев.
+
+# Клавиши-стрелки
+В i3 вместо клавиш-стрелок можно использовать следующие клавиши:
+
+<table style="width: min-content;">
+<tr>
+  <td><kbd>J</kbd></td>
+  <td><kbd>K</kbd></td>
+  <td><kbd>L</kbd></td>
+  <td><kbd>;</kbd></td>
+</tr>
+<tr>
+  <td><kbd>&larr;</kbd></td>
+  <td><kbd>&darr;</kbd></td>
+  <td><kbd>&uarr;</kbd></td>
+  <td><kbd>&rarr;</kbd></td>
+</tr>
+</table>
+
+# Программы
+- <kbd>$mod</kbd>+<kbd>Enter</kbd> - открыть терминал
+- <kbd>$mod</kbd>+<kbd>D</kbd> - открыть dmenu (меню программ)
+
+# Управление окнами
+- <kbd>$mod</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd> - закрыть окно
+- <kbd>$mod</kbd>+<kbd>V</kbd> - вертикальный режим. Все новые окна открываются вертикально
+- <kbd>$mod</kbd>+<kbd>E</kbd> - плиточный (tiling) режим. Все окна открываются в своих плитках (tile)
+- <kbd>$mod</kbd>+<kbd>W</kbd> - режим вкладок. Окна открываются в горизонтально расположенных вкладках
+- <kbd>$mod</kbd>+<kbd>S</kbd> - stacking режим. Окна открываются в вертикально расположенных вкладках (друг на друге)
+- <kbd>$mod</kbd>+<kbd>R</kbd> - resize-режим.
+- <kbd>$mod</kbd>+<kbd>Shift</kbd>+<kbd>&larr;</kbd>/<kbd>&darr;</kbd>/<kbd>&uarr;</kbd>/<kbd>&rarr;</kbd> - переместить окно в указанную сторону
+- <kbd>$mod</kbd>+<kbd>&larr;</kbd>/<kbd>&darr;</kbd>/<kbd>&uarr;</kbd>/<kbd>&rarr;</kbd> - переключиться на окно с указанной стороны
+
+
+# Resize режим
+- в нижнем левом углу отображается надпись `resize`
+- <kbd>$mod</kbd>+<kbd>&larr;</kbd> - увеличить окно в левую сторону
+- <kbd>$mod</kbd>+<kbd>&rarr;</kbd> - увеличить окно в правую сторону
+- <kbd>$mod</kbd>+<kbd>&uarr;</kbd> - увеличить окно в верхнюю сторону
+- <kbd>$mod</kbd>+<kbd>&darr;</kbd> - увеличить окно в нижнюю сторону
+- <kbd>Esc</kbd> - выйти из resize-режима
+
+# Сессия
+- <kbd>$mod</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd> - выход
+-   
+  ```shell
+  i3lock # заблокировать экран
+  ```  
+  Чтобы разблокировать экран, нужно ввести на клавиатуре пароль
+
+# Workspaces
+- <kbd>$mod</kbd>+<kbd>Shift</kbd>+<kbd>число</kbd> - создать воркспейс с указанным номером
+- <kbd>$mod</kbd>+<kbd>число</kbd> - переключиться на воркспейс с указанным номером
+
+# Конфиг
+При первом запуске i3 запустится мастер настройки, который предложит создать файл конфига. Если по какой-то причине он не создан, то его можно создать вручную командой в терминале:
+```sh
+i3-config-wizard
+```
+После редактирования конфига всегда нужно порестартить i3 хоткеем <kbd>$mod</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>.
+
+- `bindsym $mod+shift+l exec i3lock` - бинд клавиши на выполнение bash-команды
+- `exec rhythmbox` - автоматическое выполнение bash-команды при входе в i3. Так, например, можно сделать автозапуск программ
+- `exec_always rhythmbox` - автоматическое выполнение bash-команды при каждом рестарте i3
+
+## Фон рабочего стола
+Устанавливаем `feh`
+```sh
+# ubuntu
+sudo apt install feh
+# fedora
+sudo dnf install feh
+```
+Добавляем в конфиг i3
+```
+exec_always feh --bg-scale /home/$USER/Pictures/wallpaper.jpg
+```
