@@ -17,14 +17,9 @@ const Article = styled.article`
 
   > div {
     padding: 20px;
-    background: var(--post-background);
+    background: var(--background-color);
+    position: relative;
     z-index: 2;
-    border-radius: 17px;
-  }
-
-  &:focus-within::after {
-    top: 10px;
-    left: -10px;
   }
 
   & + & {
@@ -34,6 +29,38 @@ const Article = styled.article`
   @media screen and (max-width: 480px) {
     width: 100%;
     margin-left: 0;
+  }
+
+  &::after,
+  &::before {
+    content: '';
+    z-index: 0;
+    display: block;
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    transition: .25s ease;
+    opacity: .3;
+  }
+
+  &::before {
+    top: -2px;
+    left: -2px;
+    background-image: var(--cool-gradient-top-left);
+  }
+
+  &::after {
+    bottom: -2px;
+    right: -2px;
+    background-image: var(--cool-gradient-top-left);
+  }
+
+  &:hover {
+    &::after,
+    &::before {
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+    }
   }
 `
 
