@@ -42,7 +42,7 @@
   --cool-gradient-right: linear-gradient(to right, var(--grad-blue-1) 0%, var(--grad-blue-2) 16%, var(--grad-blue-3) 41.3%, var(--grad-purple) 72.5%, var(--grad-pink) 100%);
   --cool-gradient-top: linear-gradient(to bottom, var(--grad-blue-1) 0%, var(--grad-blue-2) 16%, var(--grad-blue-3) 41.3%, var(--grad-purple) 72.5%, var(--grad-pink) 100%);
 
-  --font-sans-serif: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-sans-serif: -apple-system, BlinkMacSystemFont, Cantarell, Oxygen, Ubuntu, 'Open Sans', 'Helvetica Neue', sans-serif;
   --font-serif: Merriweather, serif;
   --font-mono: 'Jetbrains Mono', 'Roboto Mono', monospace;
 
@@ -130,9 +130,10 @@ body {
   color: var(--text-color);
   font-family: var(--font-sans-serif);
   font-weight: normal;
+  line-height: 1.5;
   word-wrap: break-word;
   font-kerning: normal;
-  font-size: 16px;
+  font-size: 20px;
   -moz-font-feature-settings: "kern", "liga", "clig", "calt";
   -ms-font-feature-settings: "kern", "liga", "clig", "calt";
   -webkit-font-feature-settings: "kern", "liga", "clig", "calt";

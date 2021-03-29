@@ -47,7 +47,8 @@ const Footer = styled.footer`
 `
 
 const Container = styled.div`
-  max-width: 1060px;
+  max-width: 990px;
+  width: 100%;
   margin: auto;
 `
 

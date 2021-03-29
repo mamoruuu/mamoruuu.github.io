@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const PostContainer = styled.div`
-  max-width: 720px;
+  max-width: 990px;
   width: 100%;
   display: block;
   position: relative;
@@ -15,10 +15,10 @@ export const Header = styled.div`
 
 const titleStyles = `
   margin: 0 0 10px;
-  font-size: 32px;
+  font-size: 36px;
   font-style: normal;
-  font-weight: 500;
-  line-height: 38px;
+  font-weight: 700;
+  line-height: 1.4;
   text-align: left;
 `
 
